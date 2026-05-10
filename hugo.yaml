@@ -1,0 +1,98 @@
+baseURL: "https://a-daydream.github.io/"
+locale: "zh-cn"
+defaultContentLanguage: "zh-cn"
+title: "A Daydream"
+theme: "PaperMod"
+copyright: "© a-daydream"
+
+enableRobotsTXT: true
+enableEmoji: true
+hasCJKLanguage: true
+
+pagination:
+  pagerSize: 10
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+taxonomies:
+  category: categories
+  tag: tags
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    noClasses: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  env: production
+  title: "A Daydream"
+  description: "记录日常、想法、阅读与技术实践。"
+  keywords:
+    - Blog
+    - Hugo
+    - PaperMod
+  author: "a-daydream"
+  DateFormat: "2006-01-02"
+  defaultTheme: auto
+  disableThemeToggle: false
+
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  ShowToc: true
+  TocOpen: false
+  UseHugoToc: true
+  comments: false
+
+  homeInfoParams:
+    Title: "A Daydream"
+    Content: "记录日常、想法、阅读与技术实践。"
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/a-daydream"
+
+  editPost:
+    URL: "https://app.pagescms.org/"
+    Text: "在 Pages CMS 编辑"
+    appendFilePath: false
+
+menu:
+  main:
+    - identifier: archives
+      name: 归档
+      url: /archives/
+      weight: 10
+    - identifier: search
+      name: 搜索
+      url: /search/
+      weight: 20
+    - identifier: tags
+      name: 标签
+      url: /tags/
+      weight: 30
+    - identifier: categories
+      name: 分类
+      url: /categories/
+      weight: 40
+    - identifier: about
+      name: 关于
+      url: /about/
+      weight: 50

@@ -1,0 +1,129 @@
+media:
+  input: static/uploads
+  output: /uploads
+  rename: safe
+  categories:
+    - image
+    - document
+
+content:
+  - name: posts
+    label: 文章
+    type: collection
+    path: content/posts
+    filename:
+      template: "{year}-{month}-{day}-{title}.md"
+      field: create
+    format: yaml-frontmatter
+    subfolders: true
+    view:
+      fields:
+        - title
+        - date
+        - draft
+        - categories
+        - tags
+      primary: title
+      sort:
+        - date
+        - title
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 发布日期
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: draft
+        label: 草稿
+        type: boolean
+        default: true
+      - name: summary
+        label: 摘要
+        type: text
+        required: false
+      - name: categories
+        label: 分类
+        type: string
+        list: true
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+      - name: cover
+        label: 封面
+        type: object
+        required: false
+        fields:
+          - name: image
+            label: 图片
+            type: image
+            required: false
+          - name: alt
+            label: 替代文本
+            type: string
+            required: false
+          - name: caption
+            label: 说明
+            type: string
+            required: false
+          - name: hidden
+            label: 在正文页隐藏
+            type: boolean
+            default: false
+      - name: body
+        label: 正文
+        type: rich-text
+
+  - name: pages
+    label: 页面
+    type: collection
+    path: content
+    filename:
+      template: "{title}.md"
+      field: create
+    format: yaml-frontmatter
+    exclude:
+      - posts/**
+    view:
+      fields:
+        - title
+        - url
+      primary: title
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: url
+        label: 固定链接
+        type: string
+        required: false
+      - name: layout
+        label: 布局
+        type: string
+        required: false
+      - name: summary
+        label: 摘要
+        type: text
+        required: false
+      - name: body
+        label: 正文
+        type: rich-text
+
+settings:
+  content:
+    merge: true
+  commit:
+    templates:
+      create: "content: create {name}"
+      update: "content: update {name}"
+      delete: "content: delete {name}"
+      rename: "content: rename {oldPath} -> {newPath}"
